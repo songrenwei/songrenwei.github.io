@@ -156,22 +156,16 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/" title="link to post.title">利用SpringData投影自定义JPA查询结果集</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/05/Springboot-SpringCache-Redis的缓存使用方式/" title="link to post.title">SpringBoot+SpringCache+Redis的缓存使用方式</a></h2>
       <p class="excerpt">
     
-      ​    本篇文章介绍一种自定义接收jpa查询结果的方式–springdata投影(projection),这种方式就很灵活了，实现起来简单优雅，具体实现方式如下：
-一、一般查询
-
-pojo (interface类型)
-1234567public interface UserVO &amp;#123;String getUserName();Integer getAge();&amp;#125;
-
-
-dao(Jp
+      一. spring cache​    对于缓存，可以使用的框架太多，如reids,caffeine,ehcache等等，各有各自的优势。如果我们要想使用缓存，就得与这些框架耦合，为了避免这种情况，spring cache就利用AOP，实现基于注解的缓存功能，并进行合理的抽象，使业务代码不用担心底层使用了什么缓存框架。
+二. 编码1. maven依赖1234567891011121314&amp;lt;d
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2022-03-10T11:45:05.000Z" class="post-list__meta--date date">2022-03-10</time> &#8226; <span class="post-list__meta--tags tags">于 
-  <a class="-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
-</span><a class="btn-border-small" href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2022-03-05T11:55:55.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 
+  <a class="-none-link" href="/tags/%E7%BC%93%E5%AD%98/" rel="tag">缓存</a>
+</span><a class="btn-border-small" href="/2022/03/05/Springboot-SpringCache-Redis的缓存使用方式/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
