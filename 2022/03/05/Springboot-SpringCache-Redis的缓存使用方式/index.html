@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="e">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>SpringBoot+SpringCache+Redis的缓存使用方式 | Hexo</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="在路上，总会遇到有庆典">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="SpringBoot+SpringCache+Redis的缓存使用方式 | Hexo">
+    <meta name="twitter:description" content="在路上，总会遇到有庆典">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SpringBoot+SpringCache+Redis的缓存使用方式 | Hexo">
+    <meta property="og:description" content="在路上，总会遇到有庆典">
+
+    
+    <meta name="author" content="John Doe">
+    
+    
+<link rel="stylesheet" href="/css/vno.css">
+
+    
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+
+    
+    <link rel="icon" href="/images/avatar-small.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Hexo" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://example.com/2022/03/05/Springboot-SpringCache-Redis%E7%9A%84%E7%BC%93%E5%AD%98%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    
+<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+    
+<script src="/js/main.js"></script>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Hexo 的主页"><img src="/images/avatar.jpg" width="80" alt="Hexo logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Hexo">Hexo</a></h1>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">在路上，总会遇到有庆典</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="Visit the blog" class="blog-button">Blog</a></li>
+            
+              <li class="navigation__item"><a href="/favourite">黄金屋</a></li>
+            
+              <li class="navigation__item"><a href="/favourite/time.html">时光机</a></li>
+            
+              <li class="navigation__item"><a href="/favourite/image.html">幻想间</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/songrenwei" title="GitHub" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/onlymonniya" title="Twitter" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2022-03-05T11:55:55.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-meta__tags tags">于  </span>
+      <span class="page-pv">
+       Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">SpringBoot+SpringCache+Redis的缓存使用方式</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="一-spring-cache"><a href="#一-spring-cache" class="headerlink" title="一. spring cache"></a>一. spring cache</h2><p>​    对于缓存，可以使用的框架太多，如reids,caffeine,ehcache等等，各有各自的优势。如果我们要想使用缓存，就得与这些框架耦合，为了避免这种情况，spring cache就利用AOP，实现基于注解的缓存功能，并进行合理的抽象，使业务代码不用担心底层使用了什么缓存框架。</p>
+<h2 id="二-编码"><a href="#二-编码" class="headerlink" title="二. 编码"></a>二. 编码</h2><h3 id="1-maven依赖"><a href="#1-maven依赖" class="headerlink" title="1. maven依赖"></a>1. maven依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-application-yml配置文件"><a href="#2-application-yml配置文件" class="headerlink" title="2. application.yml配置文件"></a>2. application.yml配置文件</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">lettuce:</span></span><br><span class="line">      <span class="attr">pool:</span></span><br><span class="line">        <span class="attr">max-active:</span> <span class="number">8</span> <span class="comment"># 连接池最大连接数</span></span><br><span class="line">        <span class="attr">max-idle:</span> <span class="number">8</span> <span class="comment"># 连接池最大空闲连接数</span></span><br><span class="line">        <span class="attr">min-idle:</span> <span class="number">0</span> <span class="comment"># 连接池最小空闲连接数</span></span><br><span class="line">        <span class="attr">max-wait:</span> <span class="string">-1ms</span> <span class="comment"># 连接池最大阻塞等待时间，负值表示没有限制</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-CacheConfig配置类"><a href="#3-CacheConfig配置类" class="headerlink" title="3. CacheConfig配置类"></a>3. CacheConfig配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: 缓存配置</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: songrenwei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2020/12/11/00:00</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableCaching</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CacheConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> CacheManager <span class="title function_">cacheManager</span><span class="params">(RedisConnectionFactory connectionFactory)</span> &#123;</span><br><span class="line">        RedisSerializer&lt;String&gt; stringRedisSerializer = <span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>();</span><br><span class="line">        <span class="comment">//default信息缓存配置</span></span><br><span class="line">        <span class="type">RedisCacheConfiguration</span> <span class="variable">default1h</span> <span class="operator">=</span> RedisCacheConfiguration.defaultCacheConfig()</span><br><span class="line">                        <span class="comment">// 设置过期时间</span></span><br><span class="line">                        .entryTtl(Duration.ofHours(<span class="number">1</span>))</span><br><span class="line">                        <span class="comment">// String的方式序列化key</span></span><br><span class="line">                        .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer))</span><br><span class="line">                        <span class="comment">// jackson的方式序列化value</span></span><br><span class="line">                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer()))</span><br><span class="line">                        <span class="comment">// 空值不缓存</span></span><br><span class="line">                        .disableCachingNullValues()</span><br><span class="line">                        <span class="comment">// 设置缓存名称前缀</span></span><br><span class="line">                        .prefixCacheNameWith(<span class="string">&quot;default_1h:&quot;</span>);</span><br><span class="line">        <span class="type">RedisCacheConfiguration</span> <span class="variable">m30</span> <span class="operator">=</span> RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(<span class="number">30</span>)).serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer)).serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer())).disableCachingNullValues().prefixCacheNameWith(<span class="string">&quot;srw_&quot;</span>);</span><br><span class="line">        <span class="type">RedisCacheConfiguration</span> <span class="variable">d30</span> <span class="operator">=</span> RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofDays(<span class="number">30</span>)).serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer)).serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer())).disableCachingNullValues().prefixCacheNameWith(<span class="string">&quot;srw_&quot;</span>);</span><br><span class="line">        <span class="type">RedisCacheConfiguration</span> <span class="variable">h24</span> <span class="operator">=</span> RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofHours(<span class="number">24</span>)).serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer)).serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer())).disableCachingNullValues().prefixCacheNameWith(<span class="string">&quot;srw_&quot;</span>);</span><br><span class="line">        <span class="type">RedisCacheConfiguration</span> <span class="variable">s60</span> <span class="operator">=</span> RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(<span class="number">60</span>)).serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer)).serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer())).disableCachingNullValues().prefixCacheNameWith(<span class="string">&quot;srw_&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Map&lt;String, RedisCacheConfiguration&gt; redisCacheConfigurationMap = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;String, RedisCacheConfiguration&gt;(<span class="number">8</span>) &#123;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">2474073019770319870L</span>;</span><br><span class="line">            &#123;</span><br><span class="line">                put(<span class="string">&quot;60s&quot;</span>, s60);</span><br><span class="line">                put(<span class="string">&quot;30m&quot;</span>, m30);</span><br><span class="line">                put(<span class="string">&quot;24h&quot;</span>, h24);</span><br><span class="line">                put(<span class="string">&quot;30d&quot;</span>, d30);</span><br><span class="line">                put(<span class="string">&quot;default&quot;</span>, default1h);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RedisCacheManager</span>(RedisCacheWriter.nonLockingRedisCacheWriter(connectionFactory), default1h, redisCacheConfigurationMap);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory connectionFactory)</span> &#123;</span><br><span class="line">        RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">        template.setConnectionFactory(connectionFactory);</span><br><span class="line">        RedisSerializer&lt;Object&gt; jackson2JsonRedisSerializer = jsonSerializer();</span><br><span class="line">        <span class="type">StringRedisSerializer</span> <span class="variable">stringRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>();</span><br><span class="line">        <span class="comment">// key采用String的序列化方式</span></span><br><span class="line">        template.setKeySerializer(stringRedisSerializer);</span><br><span class="line">        <span class="comment">// hash的key也采用String的序列化方式</span></span><br><span class="line">        template.setHashKeySerializer(stringRedisSerializer);</span><br><span class="line">        <span class="comment">// value序列化方式采用jackson</span></span><br><span class="line">        template.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        <span class="comment">// hash的value序列化方式采用jackson</span></span><br><span class="line">        template.setHashValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        template.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> RedisSerializer&lt;Object&gt; <span class="title function_">jsonSerializer</span><span class="params">()</span> &#123;</span><br><span class="line">        Jackson2JsonRedisSerializer&lt;Object&gt; jackson2JsonRedisSerializer = <span class="keyword">new</span> <span class="title class_">Jackson2JsonRedisSerializer</span>&lt;&gt;(Object.class);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决查询缓存转换异常的问题</span></span><br><span class="line">        <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line">        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance , ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line">        <span class="keyword">return</span> jackson2JsonRedisSerializer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4. 测试"></a>4. 测试</h3><h4 id="4-1-controller"><a href="#4-1-controller" class="headerlink" title="4.1 controller"></a>4.1 controller</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/query/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> JsonResult&lt;?&gt; query(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id) &#123;</span><br><span class="line">        <span class="keyword">return</span> JsonResult.successResponse(userService.query(id));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-service"><a href="#4-2-service" class="headerlink" title="4.2 service"></a>4.2 service</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Cacheable(value = &quot;30m&quot;, key = &quot;#id&quot;, unless = &quot;#result == null&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">query</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-3-测试结果"><a href="#4-3-测试结果" class="headerlink" title="4.3 测试结果"></a>4.3 测试结果</h4><p>调用前先刷新下redis, 如下没有对应的key<br><img src="https://img-blog.csdnimg.cn/20210706140937926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjA0NDAyMA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>postman调用接口<br><img src="https://img-blog.csdnimg.cn/20210706142024348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjA0NDAyMA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>成功响应，查看日志<br><img src="https://img-blog.csdnimg.cn/20210706142110635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjA0NDAyMA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>刷新redis<br><img src="https://img-blog.csdnimg.cn/20210706142211767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjA0NDAyMA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>redis中已经存储了key, 以及缓存有效期<br>再调下接口，查看日志，未显示日志，说明已经走了redis。</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Newer Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/" title="利用SpringData投影自定义JPA查询结果集">利用SpringData投影自定义JPA查询结果集</a></h2>
+                <p class="excerpt">
+                
+                ​    本篇文章介绍一种自定义接收jpa查询结果的方式–springdata投影(projection),这种方式就很灵活了，实现起来简单优雅，具体实现方式如下：
+一、一般查询
+
+pojo (interface类型)
+1234567public interface UserVO &amp;#123;Str
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2022-03-10T11:45:05.000Z" class="post-list__meta--date date">2022-03-10</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Older Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2022/03/05/Linux+Jenkins+Publish over SSH+Dockerfile自动化部署springboot应用/" title="Linux+Jenkins+Publish Over SSH+Dockerfile自动化部署springboot应用">Linux+Jenkins+Publish Over SSH+Dockerfile自动化部署springboot应用</a></h2>
+                <p class="excerpt">
+                
+                本文主要实现linux服务器上如何自动化部署springboot应用，linux操作系统为CentOS 8.3 64位，win10。实现jinkens在本地（win10）打包再发送到远程服务器上（CentOS）。
+1. docker环境安装（CentOS+win10）1）安装yum-utils
+1y
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2022-03-05T11:52:18.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/Linux+Jenkins+Publish over SSH+Dockerfile自动化部署springboot应用/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; 2022 John Doe - 本站点采用 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+       
+    </span>
+    <span class="footer__copyright">
+             - 基于 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a> 搭建，使用 <a target="_blank" rel="noopener" href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题，由<a target="_blank" rel="noopener" href="https://monniya.com ">@Monniya</a> 修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9cdad07c755fa23f6aced510c6760e87";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

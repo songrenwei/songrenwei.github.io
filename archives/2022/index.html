@@ -168,6 +168,119 @@ Quick
     </li>
   
     
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/" title="link to post.title">利用SpringData投影自定义JPA查询结果集</a></h2>
+      <p class="excerpt">
+    
+      ​    本篇文章介绍一种自定义接收jpa查询结果的方式–springdata投影(projection),这种方式就很灵活了，实现起来简单优雅，具体实现方式如下：
+一、一般查询
+
+pojo (interface类型)
+1234567public interface UserVO &amp;#123;String getUserName();Integer getAge();&amp;#125;
+
+
+dao(Jp
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2022-03-10T11:45:05.000Z" class="post-list__meta--date date">2022-03-10</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/05/Springboot-SpringCache-Redis的缓存使用方式/" title="link to post.title">SpringBoot+SpringCache+Redis的缓存使用方式</a></h2>
+      <p class="excerpt">
+    
+      一. spring cache​    对于缓存，可以使用的框架太多，如reids,caffeine,ehcache等等，各有各自的优势。如果我们要想使用缓存，就得与这些框架耦合，为了避免这种情况，spring cache就利用AOP，实现基于注解的缓存功能，并进行合理的抽象，使业务代码不用担心底层使用了什么缓存框架。
+二. 编码1. maven依赖1234567891011121314&amp;lt;d
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2022-03-05T11:55:55.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/Springboot-SpringCache-Redis的缓存使用方式/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/05/Linux+Jenkins+Publish over SSH+Dockerfile自动化部署springboot应用/" title="link to post.title">Linux+Jenkins+Publish Over SSH+Dockerfile自动化部署springboot应用</a></h2>
+      <p class="excerpt">
+    
+      本文主要实现linux服务器上如何自动化部署springboot应用，linux操作系统为CentOS 8.3 64位，win10。实现jinkens在本地（win10）打包再发送到远程服务器上（CentOS）。
+1. docker环境安装（CentOS+win10）1）安装yum-utils
+1yum install -y yum-utils device-mapper-persistent-d
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2022-03-05T11:52:18.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/Linux+Jenkins+Publish over SSH+Dockerfile自动化部署springboot应用/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/05/Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用/" title="link to post.title">Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用</a></h2>
+      <p class="excerpt">
+    
+      ​    本文主要实现linux服务器上如何自动化部署springboot应用，linux操作系统为CentOS 8.3 64位。
+1. docker环境安装1）安装yum-utils
+1yum install -y yum-utils device-mapper-persistent-data lvm2 
+
+
+为yum源添加docker仓库位置
+
+1yum-config-manager --ad
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2022-03-05T11:51:53.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/05/java递归的方式展示子级节点[优化]/" title="link to post.title">java递归的方式展示子级节点[优化]</a></h2>
+      <p class="excerpt">
+    
+      说明：承接上一章，上一章说到利用注解@OneToMany以及@ManyToOne实现自身关联很方便，但是，我们的项目是默认开启spring data jpa懒加载的，所以每次调用自关联的属性的get方法时，都会再查询一次数句库，那么如果表中的记录很庞大的话，性能可想而知会很差。而且上一个实现比较愚蠢的是，明明第一次查询已经查出来了所有符合条件的记录，直接遍历筛选已查询到的记录找到子节点不就行了吗，
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2022-03-05T11:35:16.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/java递归的方式展示子级节点[优化]/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/05/java递归的方式展示子级节点/" title="link to post.title">java递归的方式展示子级节点</a></h2>
+      <p class="excerpt">
+    
+      趁热打铁再来一个递归调用，也是前后端对接的需求，前端页面可以展开table里的某一行，需满足多层级关系，因此解决该问题，以递归的方式处理更为方便，页面需求如下：展开前：
+展开后：
+蓝色圈出的部分可视为子table，即子节点，子节点也可以展开，以此类推。。。可以无限递归下去。
+代码：
+实体类
+持久层用的是jpa，实现自关联比较方便。
+
+服务类
+
+（1）DTO
+（2）查询记录
+直接查询父级节点，因为自
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2022-03-05T11:22:38.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/java递归的方式展示子级节点/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2022/03/05/java递归的方式实现树形目录返回前端页面/" title="link to post.title">java递归的方式实现树形目录返回前端页面</a></h2>
+      <p class="excerpt">
+    
+      工作中遇到的一个需求，考虑这样的程序在网上会很多想从网上直接拿，结果找了半天没找到自己想要的，干脆就自己写了，实现逻辑如下：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859import cn.hutool.json.JSONUt
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2022-03-05T11:18:33.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/java递归的方式实现树形目录返回前端页面/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
   </ol>
 
 

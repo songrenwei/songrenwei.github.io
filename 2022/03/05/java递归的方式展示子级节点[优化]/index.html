@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>Hello World | Hexo</title>
+    <title>java递归的方式展示子级节点[优化] | Hexo</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="在路上，总会遇到有庆典">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Hello World | Hexo">
+    <meta name="twitter:title" content="java递归的方式展示子级节点[优化] | Hexo">
     <meta name="twitter:description" content="在路上，总会遇到有庆典">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Hello World | Hexo">
+    <meta property="og:title" content="java递归的方式展示子级节点[优化] | Hexo">
     <meta property="og:description" content="在路上，总会遇到有庆典">
 
     
@@ -41,7 +41,7 @@
     <link rel="alternate" type="application/rss+xml" title="Hexo" href="/atom.xml">
     
 
-    <link rel="canonical" href="http://example.com/2022/05/12/hello-world/"/>
+    <link rel="canonical" href="http://example.com/2022/03/05/java%E9%80%92%E5%BD%92%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B1%95%E7%A4%BA%E5%AD%90%E7%BA%A7%E8%8A%82%E7%82%B9[%E4%BC%98%E5%8C%96]/"/>
 
                  
 </head>
@@ -154,29 +154,21 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2022-05-12T02:35:39.217Z" class="post-list__meta--date date">2022-05-12</time> &#8226; <span class="post-meta__tags tags">于  </span>
+      <time datetime="2022-03-05T11:35:16.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-meta__tags tags">于  </span>
       <span class="page-pv">
        Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
    
     </div>
-    <h1 class="post-title">Hello World</h1>
+    <h1 class="post-title">java递归的方式展示子级节点[优化]</h1>
   </header>
 
   <section class="post">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <p>说明：承接上一章，上一章说到利用注解@OneToMany以及@ManyToOne实现自身关联很方便，但是，我们的项目是默认开启spring data jpa懒加载的，所以每次调用自关联的属性的get方法时，都会再查询一次数句库，那么如果表中的记录很庞大的话，性能可想而知会很差。而且上一个实现比较愚蠢的是，明明第一次查询已经查出来了所有符合条件的记录，直接遍历筛选已查询到的记录找到子节点不就行了吗，而且数句库就查询一次。基于此，目前的实现如下：<br>代码：</p>
+<ol>
+<li>遍历<br><img src="https://img-blog.csdnimg.cn/20210528175216667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjA0NDAyMA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>遍历出parent为空的记录即为一级节点， 然后再调用递归方法时不再通过调用属性获取子记录，而是传入当前节点和记录的集合。</li>
+<li>递归<br><img src="https://img-blog.csdnimg.cn/20210528175609990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjA0NDAyMA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>首先递归方法的现在的参数列表为当前节点和记录的集合，传入集合目的是遍历出当前节点的子节点，再将遍历出的子节点放入子节点集合中。</li>
+</ol>
 
   </section>
 
@@ -185,22 +177,37 @@
 <section class="read-more">
            
     
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Newer Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2022/03/05/Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用/" title="Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用">Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用</a></h2>
+                <p class="excerpt">
+                
+                ​    本文主要实现linux服务器上如何自动化部署springboot应用，linux操作系统为CentOS 8.3 64位。
+1. docker环境安装1）安装yum-utils
+1yum install -y yum-utils device-mapper-persistent-data l
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2022-03-05T11:51:53.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用/">继续阅读</a></div>
+                           
+            </div>
         
         
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">Older Post</span>
-                <h2 class="post-list__post-title post-title"><a href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/" title="利用SpringData投影自定义JPA查询结果集">利用SpringData投影自定义JPA查询结果集</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2022/03/05/java递归的方式展示子级节点/" title="java递归的方式展示子级节点">java递归的方式展示子级节点</a></h2>
                 <p class="excerpt">
                 
-                ​    本篇文章介绍一种自定义接收jpa查询结果的方式–springdata投影(projection),这种方式就很灵活了，实现起来简单优雅，具体实现方式如下：
-一、一般查询
-
-pojo (interface类型)
-1234567public interface UserVO &amp;#123;Str
+                趁热打铁再来一个递归调用，也是前后端对接的需求，前端页面可以展开table里的某一行，需满足多层级关系，因此解决该问题，以递归的方式处理更为方便，页面需求如下：展开前：
+展开后：
+蓝色圈出的部分可视为子table，即子节点，子节点也可以展开，以此类推。。。可以无限递归下去。
+代码：
+实体类
+持久层用
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2022-03-10T11:45:05.000Z" class="post-list__meta--date date">2022-03-10</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/">继续阅读</a></div>
+                <div class="post-list__meta"><time datetime="2022-03-05T11:22:38.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2022/03/05/java递归的方式展示子级节点/">继续阅读</a></div>
                        
             </div>
         
