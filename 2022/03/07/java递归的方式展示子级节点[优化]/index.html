@@ -41,7 +41,7 @@
     <link rel="alternate" type="application/rss+xml" title="songrenwei" href="/atom.xml">
     
 
-    <link rel="canonical" href="http://example.com/2022/03/05/java%E9%80%92%E5%BD%92%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B1%95%E7%A4%BA%E5%AD%90%E7%BA%A7%E8%8A%82%E7%82%B9[%E4%BC%98%E5%8C%96]/"/>
+    <link rel="canonical" href="http://example.com/2022/03/07/java%E9%80%92%E5%BD%92%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B1%95%E7%A4%BA%E5%AD%90%E7%BA%A7%E8%8A%82%E7%82%B9[%E4%BC%98%E5%8C%96]/"/>
 
                  
 </head>
@@ -148,7 +148,7 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2022-03-05T11:35:16.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-meta__tags tags">于 
+      <time datetime="2022-03-07T11:35:16.000Z" class="post-list__meta--date date">2022-03-07</time> &#8226; <span class="post-meta__tags tags">于 
   <a class="-none-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a>
  </span>
       <span class="page-pv">
@@ -176,17 +176,19 @@
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">Newer Post</span>
-                <h2 class="post-list__post-title post-title"><a href="/2022/03/05/Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用/" title="Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用">Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/" title="利用SpringData投影自定义JPA查询结果集">利用SpringData投影自定义JPA查询结果集</a></h2>
                 <p class="excerpt">
                 
-                ​    本文主要实现linux服务器上如何自动化部署springboot应用，linux操作系统为CentOS 8.3 64位。
-1. docker环境安装1）安装yum-utils
-1yum install -y yum-utils device-mapper-persistent-data l
+                ​    本篇文章介绍一种自定义接收jpa查询结果的方式–springdata投影(projection),这种方式就很灵活了，实现起来简单优雅，具体实现方式如下：
+一、一般查询
+
+pojo (interface类型)
+1234567public interface UserVO &amp;#123;Str
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2022-03-05T11:51:53.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 
-  <a class="-none-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a>
-</span><a class="btn-border-small" href="/2022/03/05/Linux+Jenkins+SSH+Dockerfile自动化部署springboot应用/">继续阅读</a></div>
+                <div class="post-list__meta"><time datetime="2022-03-10T11:45:05.000Z" class="post-list__meta--date date">2022-03-10</time> &#8226; <span class="post-list__meta--tags tags">于 
+  <a class="-none-link" href="/tags/Jpa/" rel="tag">Jpa</a>
+</span><a class="btn-border-small" href="/2022/03/10/利用SpringData投影自定义JPA查询结果集/">继续阅读</a></div>
                            
             </div>
         
@@ -194,15 +196,20 @@
                
             <div class="read-more-item">
                 <span class="read-more-item-dim">Older Post</span>
-                <h2 class="post-list__post-title post-title"><a href="/2022/03/05/java递归的方式实现树形目录返回前端页面/" title="java递归的方式实现树形目录返回前端页面">java递归的方式实现树形目录返回前端页面</a></h2>
+                <h2 class="post-list__post-title post-title"><a href="/2022/03/06/java递归的方式展示子级节点/" title="java递归的方式展示子级节点">java递归的方式展示子级节点</a></h2>
                 <p class="excerpt">
                 
-                递归作为一种算法在程序设计语言中广泛应用。 一个过程或函数在其定义或说明中有直接或间接调用自身的一种方法，它通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解，递归策略只需少量的程序就可描述出解题过程所需要的多次重复计算，大大地减少了程序的代码量。接下来就工作中的一个例子简单练
+                趁热打铁再来一个递归调用，也是前后端对接的需求，前端页面可以展开table里的某一行，需满足多层级关系，因此解决该问题，以递归的方式处理更为方便，页面需求如下：展开前：
+展开后：
+蓝色圈出的部分可视为子table，即子节点，子节点也可以展开，以此类推。。。可以无限递归下去。
+代码：
+实体类
+持久层用
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2022-03-05T11:22:38.000Z" class="post-list__meta--date date">2022-03-05</time> &#8226; <span class="post-list__meta--tags tags">于 
+                <div class="post-list__meta"><time datetime="2022-03-06T11:22:38.000Z" class="post-list__meta--date date">2022-03-06</time> &#8226; <span class="post-list__meta--tags tags">于 
   <a class="-none-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a>
-</span><a class="btn-border-small" href="/2022/03/05/java递归的方式实现树形目录返回前端页面/">继续阅读</a></div>
+</span><a class="btn-border-small" href="/2022/03/06/java递归的方式展示子级节点/">继续阅读</a></div>
                        
             </div>
         
